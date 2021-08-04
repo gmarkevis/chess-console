@@ -1,4 +1,4 @@
-﻿using chess_console.Board;
+﻿using chess_console.board;
 using System;
 
 namespace chess_console
@@ -7,8 +7,7 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
-            Position p = new Position(3, 4);
-            Console.WriteLine("Position: " + p);
+            Board b = new Board(8, 8);
         }
     }
 }
