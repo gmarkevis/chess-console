@@ -1,5 +1,5 @@
 ﻿using chess_console.board;
-using System;
+using chess_console.chess;
 
 namespace chess_console
 {
@@ -7,9 +7,13 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
-            Board b = new Board(8, 8);
+            Board board = new Board(8, 8);
 
-            Screen.printBoard(b);
+            board.placePiece(new Rook(board, Color.Black), new Position(0, 0));
+            board.placePiece(new Rook(board, Color.Black), new Position(1, 3));
+            board.placePiece(new King(board, Color.Black), new Position(2, 4));
+
+            Screen.printBoard(board);
         }
     }
 }

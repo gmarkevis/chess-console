@@ -1,4 +1,5 @@
-﻿using chess_console.board;
+﻿using System;
+using chess_console.board;
 
 namespace chess_console
 {
@@ -11,11 +12,11 @@ namespace chess_console
                 for (int j = 0; j < board.Columns; j++)
                 {
                     if (board.Piece(i, j) == null)
-                        System.Console.Write("- ");
+                        Console.Write("- ");
                     else
-                        System.Console.WriteLine(board.Piece(i, j) + " ");
+                        Console.Write(board.Piece(i, j) + " ");
                 }
-                System.Console.WriteLine();
+                Console.WriteLine();
             }
         }
     }
