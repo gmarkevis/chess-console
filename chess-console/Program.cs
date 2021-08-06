@@ -8,20 +8,9 @@ namespace chess_console
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Board board = new Board(8, 8);
-
-                board.placePiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.placePiece(new Rook(board, Color.Black), new Position(1, 9));
-                board.placePiece(new King(board, Color.Black), new Position(2, 4));
-
-                Screen.printBoard(board);
-            }
-            catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            ChessPosition chessPosition = new ChessPosition('a', 1);
+            Console.WriteLine(chessPosition);
+            Console.WriteLine(chessPosition.toPosition());
         }
     }
 }
