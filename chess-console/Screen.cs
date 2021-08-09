@@ -1,5 +1,6 @@
 ﻿using System;
 using chess_console.board;
+using chess_console.chess;
 
 namespace chess_console
 {
@@ -26,6 +27,15 @@ namespace chess_console
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static ChessPosition readChessPosition()
+        {
+            string typedPosition = Console.ReadLine();
+            char column = typedPosition[0];
+            int line = int.Parse(typedPosition[1] + "");
+
+            return new ChessPosition(column, line);
         }
 
         public static void printPiece(Piece piece)

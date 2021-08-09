@@ -4,24 +4,24 @@
     {
         public int Lines { get; set; }
         public int Columns { get; set; }
-        private Piece[,] pieces;
+        private Piece[,] Pieces;
 
         public Board(int lines, int columns)
         {
             Lines = lines;
             Columns = columns;
-            this.pieces = new Piece[lines, columns];
+            this.Pieces = new Piece[lines, columns];
         }
 
         public Piece Piece(int line, int column)
         {
-            return pieces[line, column];
+            return Pieces[line, column];
         }
 
         public Piece Piece(Position position)
         {
             validatePosition(position);
-            return pieces[position.Line, position.Column];
+            return Pieces[position.Line, position.Column];
         }
 
         public bool pieceExists(Position position)
@@ -34,8 +34,20 @@
             if (pieceExists(position))
                 throw new BoardException("There is already a piece in that position!");
 
-            pieces[position.Line, position.Column] = piece;
+            Pieces[position.Line, position.Column] = piece;
             piece.Position = position;
+        }
+
+        public Piece removePiece(Position position)
+        {
+            if (Piece(position) == null)
+                return null;
+
+            Piece currentPiece = Piece(position);
+            currentPiece.Position = null;
+            Pieces[position.Line, position.Column] = null;
+
+            return currentPiece;
         }
 
         public bool validPosition(Position position)
