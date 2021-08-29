@@ -4,23 +4,23 @@ namespace chess_console.chess
 {
     class ChessPosition
     {
-        public char Column { get; set; }
-        public int Line { get; set; }
+        public char column { get; set; }
+        public int line { get; set; }
 
         public ChessPosition(char column, int line)
         {
-            Column = column;
-            Line = line;
+            this.column = column;
+            this.line = line;
         }
 
         public Position toPosition()
         {
-            return new Position(8 - Line, Column - 'a');
+            return new Position(8 - line, column - 'a');
         }
 
         public override string ToString()
         {
-            return "" + Column + Line;
+            return "" + column + line;
         }
     }
 }

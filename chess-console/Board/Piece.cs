@@ -1,23 +1,25 @@
 ﻿namespace chess_console.board
 {
-    class Piece
+    abstract class Piece
     {
-        public Position Position { get; set; }
-        public Color Color { get; protected set; }
+        public Position position { get; set; }
+        public Color color { get; protected set; }
         public int amountMoves{ get; protected set; }
-        public Board Board { get; protected set; }
+        public Board board { get; protected set; }
 
         public Piece(Board board, Color color)
         {
-            Position = null;
-            Color = color;
-            Board = board;
+            position = null;
+            this.color = color;
+            this.board = board;
             amountMoves = 0;
         }
 
-        public void incrementAmountMoves()
+        public void IncrementAmountMoves()
         {
             amountMoves++;
         }
+
+        public abstract bool[,] PossibleMoves();
     }
 }

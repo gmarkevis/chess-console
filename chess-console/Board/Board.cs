@@ -2,26 +2,26 @@
 {
     class Board
     {
-        public int Lines { get; set; }
-        public int Columns { get; set; }
-        private Piece[,] Pieces;
+        public int lines { get; set; }
+        public int columns { get; set; }
+        private Piece[,] pieces;
 
         public Board(int lines, int columns)
         {
-            Lines = lines;
-            Columns = columns;
-            this.Pieces = new Piece[lines, columns];
+            this.lines = lines;
+            this.columns = columns;
+            this.pieces = new Piece[lines, columns];
         }
 
         public Piece Piece(int line, int column)
         {
-            return Pieces[line, column];
+            return pieces[line, column];
         }
 
         public Piece Piece(Position position)
         {
             validatePosition(position);
-            return Pieces[position.Line, position.Column];
+            return pieces[position.line, position.column];
         }
 
         public bool pieceExists(Position position)
@@ -34,8 +34,8 @@
             if (pieceExists(position))
                 throw new BoardException("There is already a piece in that position!");
 
-            Pieces[position.Line, position.Column] = piece;
-            piece.Position = position;
+            pieces[position.line, position.column] = piece;
+            piece.position = position;
         }
 
         public Piece removePiece(Position position)
@@ -44,15 +44,15 @@
                 return null;
 
             Piece currentPiece = Piece(position);
-            currentPiece.Position = null;
-            Pieces[position.Line, position.Column] = null;
+            currentPiece.position = null;
+            pieces[position.line, position.column] = null;
 
             return currentPiece;
         }
 
         public bool validPosition(Position position)
         {
-            if (position.Line < 0 || position.Line >= Lines || position.Column < 0 || position.Column >= Columns)
+            if (position.line < 0 || position.line >= lines || position.column < 0 || position.column >= columns)
                 return false;
 
             return true;
