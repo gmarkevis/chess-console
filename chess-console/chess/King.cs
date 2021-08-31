@@ -27,42 +27,42 @@ namespace chess_console.chess
 
             // Up
             kingPosition.setValues(position.line - 1, position.column);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Northeast
             kingPosition.setValues(position.line - 1, position.column + 1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Right
             kingPosition.setValues(position.line, position.column + 1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Southeast
             kingPosition.setValues(position.line + 1, position.column + 1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Down
             kingPosition.setValues(position.line + 1, position.column);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Southwest
             kingPosition.setValues(position.line + 1, position.column -1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Left
             kingPosition.setValues(position.line, position.column - 1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             // Northwest
             kingPosition.setValues(position.line - 1, position.column - 1);
-            if (board.validPosition(kingPosition) && canMove(kingPosition))
+            if (board.ValidPosition(kingPosition) && canMove(kingPosition))
                 positionsMoves[kingPosition.line, kingPosition.column] = true;
 
             return positionsMoves;

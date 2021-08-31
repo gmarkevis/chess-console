@@ -20,6 +20,26 @@
             amountMoves++;
         }
 
+        public bool PossibleMovesExists()
+        {
+            bool[,] possibleMoves = PossibleMoves();
+            for(int i = 0; i < board.lines; i++)
+            {
+                for(int j = 0; j < board.columns; j++)
+                {
+                    if (possibleMoves[i, j])
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CanMoveTo(Position piecePosition)
+        {
+            return PossibleMoves()[piecePosition.line, piecePosition.column];
+        }
+
         public abstract bool[,] PossibleMoves();
     }
 }

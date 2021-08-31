@@ -6,21 +6,21 @@ namespace chess_console
 {
     class Screen
     {
-        public static void printBoard(Board board)
+        public static void PrintBoard(Board board)
         {
             for (int i = 0; i < board.lines; i++)
             {
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < board.columns; j++)
                 {
-                    printPiece(board.Piece(i, j));
+                    PrintPiece(board.Piece(i, j));
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
         }
 
-        public static void printBoard(Board board, bool[,] possibleMoves)
+        public static void PrintBoard(Board board, bool[,] possibleMoves)
         {
             ConsoleColor currentBackground = Console.BackgroundColor;
             ConsoleColor newBackground = ConsoleColor.DarkGray;
@@ -35,7 +35,7 @@ namespace chess_console
                     else
                         Console.BackgroundColor = currentBackground;
 
-                    printPiece(board.Piece(i, j));
+                    PrintPiece(board.Piece(i, j));
                     Console.BackgroundColor = currentBackground;
                 }
                 Console.WriteLine();
@@ -44,7 +44,7 @@ namespace chess_console
             Console.BackgroundColor = currentBackground;
         }
 
-        public static ChessPosition readChessPosition()
+        public static ChessPosition ReadChessPosition()
         {
             string typedPosition = Console.ReadLine();
             char column = typedPosition[0];
@@ -53,7 +53,7 @@ namespace chess_console
             return new ChessPosition(column, line);
         }
 
-        public static void printPiece(Piece piece)
+        public static void PrintPiece(Piece piece)
         {
             if (piece == null)
             {

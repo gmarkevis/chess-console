@@ -22,7 +22,7 @@ namespace chess_console.chess
 
             // Up
             rookPosition.setValues(position.line - 1, position.column);
-            while (board.validPosition(rookPosition) && canMove(rookPosition))
+            while (board.ValidPosition(rookPosition) && canMove(rookPosition))
             {
                 positionsMoves[rookPosition.line, rookPosition.column] = true;
 
@@ -34,7 +34,7 @@ namespace chess_console.chess
 
             // Down
             rookPosition.setValues(position.line + 1, position.column);
-            while (board.validPosition(rookPosition) && canMove(rookPosition))
+            while (board.ValidPosition(rookPosition) && canMove(rookPosition))
             {
                 positionsMoves[rookPosition.line, rookPosition.column] = true;
 
@@ -46,7 +46,7 @@ namespace chess_console.chess
 
             // Right
             rookPosition.setValues(position.line, position.column + 1);
-            while (board.validPosition(rookPosition) && canMove(rookPosition))
+            while (board.ValidPosition(rookPosition) && canMove(rookPosition))
             {
                 positionsMoves[rookPosition.line, rookPosition.column] = true;
 
@@ -58,7 +58,7 @@ namespace chess_console.chess
 
             // Left
             rookPosition.setValues(position.line, position.column - 1);
-            while (board.validPosition(rookPosition) && canMove(rookPosition))
+            while (board.ValidPosition(rookPosition) && canMove(rookPosition))
             {
                 positionsMoves[rookPosition.line, rookPosition.column] = true;
 
