@@ -17,10 +17,7 @@ namespace chess_console
                     try
                     {
                         Console.Clear();
-                        Screen.PrintBoard(match.board);
-                        Console.WriteLine();
-                        Console.WriteLine("Shift: " + match.shift);
-                        Console.WriteLine("Waiting for move: " + match.currentPlayer);
+                        Screen.PrintMatch(match);
 
                         Console.WriteLine();
 
