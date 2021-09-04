@@ -20,6 +20,11 @@
             amountMoves++;
         }
 
+        public void DecrementAmountMoves()
+        {
+            amountMoves--;
+        }
+
         public bool PossibleMovesExists()
         {
             bool[,] possibleMoves = PossibleMoves();
