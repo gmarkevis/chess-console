@@ -94,7 +94,7 @@ namespace chess_console.chess
 
         public void ValidateDestinyPosition(Position origin, Position destiny)
         {
-            if (!(board.Piece(origin).CanMoveTo(destiny)))
+            if (!(board.Piece(origin).PossibleMove(destiny)))
                 throw new BoardException("Invalid destiny position!");
         }
 

@@ -40,7 +40,7 @@
             return false;
         }
 
-        public bool CanMoveTo(Position piecePosition)
+        public bool PossibleMove(Position piecePosition)
         {
             return PossibleMoves()[piecePosition.line, piecePosition.column];
         }
