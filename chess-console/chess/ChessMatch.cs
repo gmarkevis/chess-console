@@ -44,7 +44,7 @@ namespace chess_console.chess
             Piece piece = board.RemovePiece(destiny);
             piece.DecrementAmountMoves();
 
-            if(capturedPiece != null)
+            if (capturedPiece != null)
             {
                 board.PlacePiece(capturedPiece, destiny);
                 capturedPiecesInMatch.Remove(capturedPiece);
@@ -68,8 +68,16 @@ namespace chess_console.chess
             else
                 check = false;
 
-            shift++;
-            ChangePlayer();
+            if (CheckMateTest(OpposingColor(currentPlayer)))
+            {
+                finishedMatch = true;
+            }
+            else
+            {
+                shift++;
+                ChangePlayer();
+            }
+
         }
 
         public void ValidateOriginPosition(Position originPosition)
@@ -162,6 +170,37 @@ namespace chess_console.chess
             return false;
         }
 
+        public bool CheckMateTest(Color color)
+        {
+            if (!InCheckMate(color))
+                return false;
+
+            foreach (Piece piece in PiecesInMatch(color))
+            {
+                bool[,] possibleMoves = piece.PossibleMoves();
+
+                for (int i = 0; i < board.lines; i++)
+                {
+                    for (int j = 0; j < board.columns; j++)
+                    {
+                        if (possibleMoves[i, j])
+                        {
+                            Position origin = piece.position;
+                            Position destiny = new Position(i, j);
+                            Piece capturedPiece = PerformMovement(origin, destiny);
+                            bool currentKingCheck = InCheckMate(color);
+                            UndoMovement(origin, destiny, capturedPiece);
+
+                            if (!currentKingCheck)
+                                return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void PlaceNewPiece(char column, int line, Piece piece)
         {
             board.PlacePiece(piece, new ChessPosition(column, line).toPosition());
@@ -171,18 +210,28 @@ namespace chess_console.chess
         private void PlacePiecesChessMatch()
         {
             PlaceNewPiece('c', 1, new Rook(board, Color.White));
-            PlaceNewPiece('c', 2, new Rook(board, Color.White));
-            PlaceNewPiece('d', 2, new Rook(board, Color.White));
-            PlaceNewPiece('e', 2, new Rook(board, Color.White));
-            PlaceNewPiece('e', 1, new Rook(board, Color.White));
             PlaceNewPiece('d', 1, new King(board, Color.White));
+            PlaceNewPiece('h', 7, new Rook(board, Color.White));
 
-            PlaceNewPiece('c', 7, new Rook(board, Color.Black));
-            PlaceNewPiece('c', 8, new Rook(board, Color.Black));
-            PlaceNewPiece('d', 7, new Rook(board, Color.Black));
-            PlaceNewPiece('e', 7, new Rook(board, Color.Black));
-            PlaceNewPiece('e', 8, new Rook(board, Color.Black));
-            PlaceNewPiece('d', 8, new King(board, Color.Black));
+            PlaceNewPiece('a', 8, new King(board, Color.Black));
+            PlaceNewPiece('b', 8, new Rook(board, Color.Black));
         }
+
+        //private void PlacePiecesChessMatch()
+        //{
+        //    PlaceNewPiece('c', 1, new Rook(board, Color.White));
+        //    PlaceNewPiece('c', 2, new Rook(board, Color.White));
+        //    PlaceNewPiece('d', 2, new Rook(board, Color.White));
+        //    PlaceNewPiece('e', 2, new Rook(board, Color.White));
+        //    PlaceNewPiece('e', 1, new Rook(board, Color.White));
+        //    PlaceNewPiece('d', 1, new King(board, Color.White));
+
+        //    PlaceNewPiece('c', 7, new Rook(board, Color.Black));
+        //    PlaceNewPiece('c', 8, new Rook(board, Color.Black));
+        //    PlaceNewPiece('d', 7, new Rook(board, Color.Black));
+        //    PlaceNewPiece('e', 7, new Rook(board, Color.Black));
+        //    PlaceNewPiece('e', 8, new Rook(board, Color.Black));
+        //    PlaceNewPiece('d', 8, new King(board, Color.Black));
+        //}
     }
 }

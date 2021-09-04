@@ -13,9 +13,18 @@ namespace chess_console
             Console.WriteLine();
             PrintCapturedPieces(match);
             Console.WriteLine("Shift: " + match.shift);
-            Console.WriteLine("Waiting for move: " + match.currentPlayer);
-            if(match.check)
-                Console.WriteLine("CHECK!");
+
+            if (!match.finishedMatch)
+            {
+                Console.WriteLine("Waiting for move: " + match.currentPlayer);
+                if (match.check)
+                    Console.WriteLine("CHECK!");
+            }
+            else
+            {
+                Console.WriteLine("CHECKMATE!!!");
+                Console.WriteLine("Winner: " + match.currentPlayer);
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch match)
@@ -36,7 +45,7 @@ namespace chess_console
         {
             Console.Write("[");
 
-            foreach(Piece piece in pieces)
+            foreach (Piece piece in pieces)
             {
                 Console.Write(piece + " ");
             }
