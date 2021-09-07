@@ -138,6 +138,20 @@ namespace chess_console.chess
                 throw new BoardException("You can't put yourself in check!");
             }
 
+            Piece piece = board.Piece(destiny);
+            // #specialmove Promotion
+            if(piece is Pawn)
+            {
+                if((piece.color == Color.White && destiny.line == 0) || (piece.color == Color.Black && destiny.line == 7))
+                {
+                    piece = board.RemovePiece(destiny);
+                    pieces.Remove(piece);
+                    Piece queen = new Queen(board, piece.color);
+                    board.PlacePiece(queen, destiny);
+                    pieces.Add(queen);
+                }
+            }
+
             if (InCheckMate(OpposingColor(currentPlayer)))
                 check = true;
             else
@@ -153,7 +167,7 @@ namespace chess_console.chess
                 ChangePlayer();
             }
 
-            Piece piece = board.Piece(destiny);
+            
             // #specialmove En Passant
             if (piece is Pawn && (destiny.line == origin.line - 2 || destiny.line == origin.line + 2))
                 vulnerableEnPassant = piece;
